@@ -1,0 +1,126 @@
+.home-container {
+    height: 1000px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+  
+  .user-info {
+    display: flex;
+  }
+  
+  .user-info-image {
+    margin-left: 3rem;
+    height: 200px;
+    border-radius: 50%;
+  }
+  
+  .user-info-section {
+    align-self: center;
+    padding-left: 1.5rem;
+  }
+  
+  .user-info-name {
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 5px;
+  }
+  
+  .user-info-ubi-marker {
+    height: 25px;
+  }
+  
+  .user-info-2 {
+    border-top: 3px solid #232323;
+    border-bottom: 3px solid #232323;
+    width: 90%;
+    align-self: center;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .user-info-element {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .element-value {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .element-name {
+    text-align: center;
+    color: #a7a7a7;
+  }
+
+  .user-stats-points{
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    width: 60%;
+  }
+
+  .stat-value{
+    text-align: center;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: gray 0px 1px 1px;
+  }
+
+  .stat-name{
+    text-align: center;
+    color: #a7a7a7;
+  }
+
+  .last-lessons{
+    align-self: center;
+    width: 90%;
+  }
+
+  .last-lessons-top{
+    border-top: 3px solid #232323;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .last-lessons-title{
+    font-size: 20px;
+    color: white;
+  }
+
+  .last-lessons-button{
+    background-color: #ff7900;
+    border-radius: 2px;
+    border-color: transparent;
+    color: white;
+    font-size: 12px;
+    width: 100px;
+    height: 30px;
+  }
+
+  .last-lessons-button:hover{
+    background-color: orange;
+    cursor: pointer;
+  }
+
+  .last-lessons-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 0px;
+  }

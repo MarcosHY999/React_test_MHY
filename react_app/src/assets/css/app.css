@@ -1,0 +1,39 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-color: #151515;
+  width: 885px;
+  height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  height: 55px;
+  display: flex;
+  background-color: #000000;
+}
+
+.top-bar-logo {
+  height: 60%;
+  padding-left: 1.5rem;
+  align-self: center;
+}
+
+.top-bar-logo:hover{
+  cursor: pointer;
+}
+
+.container{
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

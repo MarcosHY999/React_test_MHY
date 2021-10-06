@@ -1,0 +1,16 @@
+.lesson-list{
+    height: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin: auto;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+    overflow-y: scroll;
+}
+
+.lesson-list::after {
+    content: "";
+    flex:auto;
+    flex-basis: 100%
+  }

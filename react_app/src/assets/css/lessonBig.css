@@ -1,0 +1,65 @@
+.lessonb-container {
+    width: 31.5%;
+    height: 18.5%;
+    display: flex;
+    flex-flow: column;
+    background-color: #383838;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+}
+
+.lessonb-container:hover {
+    outline: 2px solid white;
+    cursor: pointer;
+}
+
+.lessonb-top {
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+    background-size: cover;
+    background-position: 50% 50%;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.lessonb-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.lessonb-instructor{
+    font-size: 11px;
+}
+
+.lessonb-bottom{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #a7a7a7;
+    font-size: 12px;
+}
+
+.lessonb-level{
+    display: flex;
+    align-items: baseline;
+}
+
+.lessonb-level-balls{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 8px;
+}
+
+.lessonb-ball {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: #504f4f;
+    margin-right: 4px;
+}
