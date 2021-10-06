@@ -6,11 +6,7 @@ export async function requestUserProfile() {
     await request({
         'url': API_URL + 'userprofile',
     })
-        .then(function (response) {
-            {
-                contents = response.data;
-            }
-        });
+        .then(function (response) { contents = response.data; });
     return contents;
 }
 
@@ -19,11 +15,7 @@ export async function requestLessons() {
     await request({
         'url': API_URL + 'lessons',
     })
-        .then(function (response) {
-            {
-                contents = response.data;
-            }
-        });
+        .then(function (response) { contents = response.data; });
     return contents;
 }
 
@@ -32,10 +24,6 @@ export async function requestInstructorName(id) {
     await request({
         'url': API_URL + 'instructor/' + id,
     })
-        .then(function (response) {
-            {
-                contents = response.data;
-            }
-        });
+        .then(function (response) { contents = response.data; });
     return contents;
 }

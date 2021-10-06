@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../assets/css/player.css'
 import returnArrow from '../assets/images/return_button_arrow.png'
 

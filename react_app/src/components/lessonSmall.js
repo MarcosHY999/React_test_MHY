@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../assets/images/logo_bc_2.png'
 import '../assets/css/lessonSmall.css'
 import { requestInstructorName } from '../requests'

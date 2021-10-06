@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../assets/css/app.css';
 import logoTop from '../assets/images/logo_bc.png'
 import Home from './home'
@@ -42,6 +42,7 @@ class App extends React.Component {
     if (!this.state.loading) {
       switch (this.state.currentWindow) {
         case 'home':
+        default:
           return (<Home
             onChangeWindow={this.setCurrentWindow}
             onPlayVideo={this.setPlayingVideo}

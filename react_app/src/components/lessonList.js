@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LessonBig from './lessonBig'
 import '../assets/css/lessonList.css'
 
@@ -9,6 +9,7 @@ class LessonList extends React.Component {
             <React.Fragment>
                 {newlessons.reverse().map(lesson => (
                     <LessonBig
+                        key={lesson.id}
                         lesson={lesson}
                         onPlayVideo={this.props.onPlayVideo} />
                 ))}
@@ -16,9 +17,9 @@ class LessonList extends React.Component {
     }
 
     render() {
-        return <div className="lesson-list" >
+        return <ul className="lesson-list" >
             {this.renderAllLessons()}
-        </div>;
+        </ul>;
     }
 }
 

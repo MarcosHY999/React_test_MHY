@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ubicationMarker from '../assets/images/ubication_marker.png'
 import '../assets/css/home.css'
 import LessonSmall from './lessonSmall';
@@ -14,10 +14,10 @@ class Home extends React.Component {
                 { name: 'PUNTOS', value: user.total_points }
             ],
             userStats: [
-                { color: '#fcd900', name: 'Resistencia', value: user.stamina_points },
-                { color: '#f13b46', name: 'Fuerza', value: user.strength_points },
-                { color: '#69ae00', name: 'Flexibilidad', value: user.flexiblity_points },
-                { color: '#1d8cb9', name: 'Mente', value: user.mind_points }
+                { name: 'Resistencia', value: user.stamina_points, color: '#fcd900' },
+                { name: 'Fuerza', value: user.strength_points, color: '#f13b46' },
+                { name: 'Flexibilidad', value: user.flexiblity_points, color: '#69ae00' },
+                { name: 'Mente', value: user.mind_points, color: '#1d8cb9' }
             ],
         }
     }
@@ -27,7 +27,7 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 {this.state.userInfo.map(info => (
-                    <div className="user-info-element">
+                    <div className="user-info-element" key={info.name}>
                         <div className="element-value">{info.value}</div>
                         <div className="element-name">{info.name}</div>
                     </div>))}
@@ -38,7 +38,7 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 {this.state.userStats.map(stat => (
-                    <div className="user-stat">
+                    <div className="user-stat" key={stat.name}>
                         <div className="stat-value"
                             style={{ backgroundColor: stat.color }} >
                             {stat.value}</div>
@@ -52,6 +52,7 @@ class Home extends React.Component {
             <React.Fragment>
                 {this.props.lessons.map(lesson => (
                     <LessonSmall
+                        key={lesson.id}
                         lessonInfo={lesson}
                         onPlayVideo={this.props.onPlayVideo} />
                 ))}

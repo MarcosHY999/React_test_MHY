@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../assets/css/lessonBig.css'
 import { requestInstructorName } from '../requests'
 
@@ -37,9 +37,12 @@ class LessonBig extends React.Component {
             if (i < this.props.lesson.level) {
                 res.push(<div
                     className="lessonb-ball"
+                    key={"ball" + i}
                     style={{ backgroundColor: LEVEL_BALL_ACTIVE }} />);
             } else {
-                res.push(<div className="lessonb-ball" />)
+                res.push(<div
+                    className="lessonb-ball"
+                    key={"ball" + i} />)
             }
         }
         return (<React.Fragment>{res}</React.Fragment>)
