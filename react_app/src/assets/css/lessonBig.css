@@ -1,7 +1,7 @@
 .lessonb-container {
     width: 31.5%;
     max-width: 295px;
-    height: 22%;
+    height: 24%;
     display: flex;
     flex-flow: column;
     background-color: #383838;
@@ -16,15 +16,50 @@
 
 .lessonb-top {
     display: flex;
-    flex-flow: column;
     flex-grow: 1;
+    justify-content: flex-start;
     background-size: cover;
     background-position: 50% 50%;
-    color: white;
-    padding-left: 12px;
+    padding-left: 10px;
     padding-right: 10px;
     padding-top: 8px;
+    padding-bottom: 12px;
+}
+
+.lessonb-top-text {
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+    color: white;
     text-shadow: 1px 1px 1px #000000;
+    margin-left: 10px;
+}
+
+.lessonb-top-checkbox-unselected {
+    height: 21px;
+    min-width: 21px;
+    border-radius: 2px;
+    outline: 2px solid white;
+    margin-top: 2px;
+}
+
+.lessonb-top-checkbox-unselected:hover{
+    outline: 2px solid gray;
+}
+
+.lessonb-top-checkbox-selected {
+    height: 21px;
+    min-width: 21px;
+    border-radius: 2px;
+    margin-top: 2px;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 50% 50%;
+    background-color: #ff7900;
+}
+
+.lessonb-top-checkbox-selected:hover {
+    outline: 2px solid gray;
 }
 
 .lessonb-title {
@@ -35,6 +70,20 @@
 
 .lessonb-instructor{
     font-size: 13px;
+}
+
+.lessonb-completed{
+    background-color: #ff7900;
+    width: 110px;
+    height: 24px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: auto;
+    margin-left: -25px;
+    line-height: 25px;
+    font-size: 15px;
+    box-shadow: 1px 1px 5px 1px black;
 }
 
 .lessonb-bottom{
