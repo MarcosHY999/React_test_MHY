@@ -1,6 +1,6 @@
 .lesson-list{
-    height: 1000px;
     display: flex;
+    height: 100%;
     flex-wrap: wrap;
     padding: 1rem;
     margin: auto;
@@ -12,5 +12,5 @@
 .lesson-list::after {
     content: "";
     flex:auto;
-    flex-basis: 100%
+    flex-basis: 100%;
   }

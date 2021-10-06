@@ -1,16 +1,17 @@
 .home-container {
-    height: 1000px;
     display: flex;
+    height: 100%;
     flex-flow: column;
     justify-content: space-around;
   }
   
   .user-info {
     display: flex;
+    align-self: center;
+    justify-content: center;
   }
   
   .user-info-image {
-    margin-left: 3rem;
     height: 200px;
     border-radius: 50%;
   }
@@ -64,6 +65,7 @@
     display: flex;
     justify-content: space-around;
     align-self: center;
+    padding-top: 10px;
     width: 60%;
   }
 
@@ -71,7 +73,7 @@
     text-align: center;
     width: 90px;
     height: 90px;
-    line-height: 90px;
+    line-height: 95px;
     border-radius: 50%;
     font-size: 30px;
     color: #fff;
@@ -108,6 +110,7 @@
     border-radius: 2px;
     border-color: transparent;
     color: white;
+    font-weight: bold;
     font-size: 12px;
     width: 100px;
     height: 30px;

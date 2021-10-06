@@ -16,6 +16,7 @@ class LessonSmall extends React.Component {
         })
 
     }
+
     getDate() {
         const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
             "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"

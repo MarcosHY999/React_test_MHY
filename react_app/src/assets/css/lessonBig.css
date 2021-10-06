@@ -1,5 +1,6 @@
 .lessonb-container {
     width: 31.5%;
+    max-width: 295px;
     height: 18.5%;
     display: flex;
     flex-flow: column;
@@ -22,16 +23,17 @@
     color: white;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 5px;
+    padding-top: 6px;
 }
 
 .lessonb-title {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 14.5px;
+    
 }
 
 .lessonb-instructor{
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .lessonb-bottom{

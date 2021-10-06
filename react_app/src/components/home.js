@@ -2,6 +2,7 @@ import React from 'react';
 import ubicationMarker from '../assets/images/ubication_marker.png'
 import '../assets/css/home.css'
 import LessonSmall from './lessonSmall';
+import noUserImage from '../assets/images/no_user_img.png'
 
 class Home extends React.Component {
     constructor(props) {
@@ -21,7 +22,6 @@ class Home extends React.Component {
             ],
         }
     }
-
 
     renderUserInfo() {
         return (
@@ -64,7 +64,9 @@ class Home extends React.Component {
         return (
             <div className="home-container">
                 <div className="user-info">
-                    <img className="user-info-image" src={user.avatar}></img>
+                    <img className="user-info-image"
+                        src={user.avatar}
+                        alt={noUserImage} />
                     <div className="user-info-section">
                         <div className="user-info-name">{user.name}</div>
                         <img className="user-info-ubi-marker" src={ubicationMarker}></img>
