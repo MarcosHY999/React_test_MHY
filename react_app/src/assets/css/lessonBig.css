@@ -1,12 +1,12 @@
 .lessonb-container {
     width: 31.5%;
     max-width: 295px;
-    height: 18.5%;
+    height: 22%;
     display: flex;
     flex-flow: column;
     background-color: #383838;
     border-radius: 2px;
-    margin-bottom: 1rem;
+    margin: 8px;
 }
 
 .lessonb-container:hover {
@@ -21,19 +21,20 @@
     background-size: cover;
     background-position: 50% 50%;
     color: white;
-    padding-left: 10px;
+    padding-left: 12px;
     padding-right: 10px;
-    padding-top: 6px;
+    padding-top: 8px;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 .lessonb-title {
     font-weight: bold;
-    font-size: 14.5px;
+    font-size: 17px;
     
 }
 
 .lessonb-instructor{
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .lessonb-bottom{
@@ -42,7 +43,7 @@
     padding: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    color: #a7a7a7;
+    color: #b4b3b3;
     font-size: 12px;
 }
 

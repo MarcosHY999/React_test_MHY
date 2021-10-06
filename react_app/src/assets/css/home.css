@@ -8,7 +8,6 @@
   .user-info {
     display: flex;
     align-self: center;
-    justify-content: center;
   }
   
   .user-info-image {
@@ -80,7 +79,7 @@
     text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
-    text-shadow: gray 0px 1px 1px;
+    text-shadow: 1px 1px 1px #000000;
   }
 
   .stat-name{

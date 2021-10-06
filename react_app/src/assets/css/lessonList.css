@@ -3,14 +3,7 @@
     height: 100%;
     flex-wrap: wrap;
     padding: 1rem;
-    margin: auto;
-    justify-content: space-around;
+    justify-content: flex-start;
     margin-top: 0.5rem;
     overflow-y: scroll;
 }
-
-.lesson-list::after {
-    content: "";
-    flex:auto;
-    flex-basis: 100%;
-  }
