@@ -27,3 +27,28 @@ export async function requestInstructorName(id) {
         .then(function (response) { contents = response.data; });
     return contents;
 }
+
+export async function requestCreateSubscription(id, subscription) {
+    let contents = 0;
+    await request({
+        'url': API_URL + 'subscription?id=' + id + "&subscription=" + subscription,
+        'method': 'post'
+    })
+        .then(response => contents = [response.status, response.data])
+        .catch(err => {
+            contents = [err.response.status, err.response.data]
+        });
+    return contents;
+}
+
+export async function requestSubscriptionTime(id) {
+    let contents = 0;
+    await request({
+        'url': API_URL + 'subscription?id=' + id,
+    })
+        .then(response => contents = [response.status, response.data])
+        .catch(err => {
+            contents = [err.response.status, err.response.data]
+        });
+    return contents;
+}

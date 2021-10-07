@@ -1,4 +1,4 @@
-.subscription-counter-container{
+.subscription-timer-container{
     color: white;
     display: flex;
     align-self: center;
@@ -7,4 +7,9 @@
     letter-spacing: 0.5px;
     width: 160px;
     justify-content: space-between;
+}
+
+.subscription-timer-container:hover{
+    cursor: pointer;
+    color:gray;
 }

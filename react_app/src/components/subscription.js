@@ -5,6 +5,11 @@ import check from '../assets/images/check.png'
 class Subscription extends React.Component {
     state = {
         isSelected: false,
+        optionBox: [
+            { name: '1 minuto', value: 1 },
+            { name: '5 minutos', value: 5 },
+            { name: '10 minutos', value: 10 }
+        ],
     }
 
     componentDidMount() {
@@ -12,8 +17,10 @@ class Subscription extends React.Component {
     }
 
     toogleSelection() {
+        let newValue = !this.state.isSelected
+        this.props.setAutoRenovation(newValue)
         this.setState({
-            isSelected: !this.state.isSelected
+            isSelected: newValue
         })
     }
 
@@ -36,10 +43,33 @@ class Subscription extends React.Component {
         }
     }
 
-    render() {
-        const { startSubscription } = this.props;
-        const { isSelected } = this.state;
+    renderOptionBox() {
+        const { startSubscription, subscriptionPlan, setNewPlan } = this.props;
 
+        if (this.props.isSubscribed) {
+            return (
+                this.state.optionBox.map(option => {
+                    let outlineSize = subscriptionPlan === option.value ? "4px" : "0px"
+                    return (
+                        <div className="subscription-options-box"
+                            style={{ outline: outlineSize + " solid #ff7900" }}
+                            key={option.name}
+                            onClick={() => setNewPlan(option.value)}>{option.name}</div>
+                    )
+                }))
+        } else {
+            return (
+                this.state.optionBox.map(option => {
+                    return (
+                        <div className="subscription-options-box"
+                            key={option.name}
+                            onClick={() => startSubscription(option.value)}>{option.name}</div>
+                    )
+                }))
+        }
+    }
+
+    render() {
         return <div className="subscription-container">
             <span className="subscription-title">SUSCRÍBETE</span>
             <div className="subscription-auto-section">
@@ -47,12 +77,7 @@ class Subscription extends React.Component {
                 <span className="subscription-auto-section-text">Autorenovar automáticamente</span>
             </div>
             <div className="subscription-options">
-                <div className="subscription-options-box"
-                    onClick={() => startSubscription(10, isSelected)}>1 minuto</div>
-                <div className="subscription-options-box"
-                    onClick={() => startSubscription(300, isSelected)}>5 minutos</div>
-                <div className="subscription-options-box"
-                    onClick={() => startSubscription(600, isSelected)}>10 minutos</div>
+                {this.renderOptionBox()}
             </div>
         </div>;
     }

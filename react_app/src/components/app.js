@@ -5,8 +5,13 @@ import Home from './home'
 import LessonList from './lessonList'
 import Player from './player'
 import Subscription from './subscription';
-import SubscriptionCounter from './subscriptionCounter';
-import { requestUserProfile, requestLessons } from '../requests.js'
+import SubscriptionTimer from './subscriptionTimer';
+import {
+    requestUserProfile, requestLessons,
+    requestCreateSubscription, requestSubscriptionTime
+} from '../requests.js'
+
+const USER_ID = 1
 
 class App extends React.Component {
     constructor(props) {
@@ -17,15 +22,20 @@ class App extends React.Component {
             user: undefined,
             lessons: [],
             loading: true,
+
+            //playlists and player
             instructors: [],
             videoPlayList: [],
             completedLessons: [],
             isPlayListPlaying: false,
             playingVideo: undefined,
             videoInstructorName: "N/A",
+
+            //subscriptions
             isSubscribed: false,
             autoRenovation: false,
             subscriptionTime: 0,
+            subscriptionPlan: 0,
         }
         this.addToVideoPlayList = this.addToVideoPlayList.bind(this)
         this.removeFromVideoPlayList = this.removeFromVideoPlayList.bind(this)
@@ -33,6 +43,8 @@ class App extends React.Component {
         this.setVideoAsCompleted = this.setVideoAsCompleted.bind(this)
         this.startSubscription = this.startSubscription.bind(this)
         this.endSubscription = this.endSubscription.bind(this)
+        this.setAutoRenovation = this.setAutoRenovation.bind(this)
+        this.setNewSubscriptionPlan = this.setNewSubscriptionPlan.bind(this)
     }
 
 
@@ -46,9 +58,17 @@ class App extends React.Component {
     async initializeData() {
         let user = await requestUserProfile()
         let lessons = await requestLessons()
+        let subscription = await requestSubscriptionTime(USER_ID)
+        let subscriptionTime = subscription[0] !== 404 ? subscription[1].time : 0
+        if (subscriptionTime > 0) {
+            this.setState({
+                isSubscribed: true,
+                subscriptionTime
+            })
+        }
         this.setState({
             user,
-            lessons
+            lessons,
         })
     }
 
@@ -116,8 +136,17 @@ class App extends React.Component {
                 completedLessons
             })
         }
+        this.removeFromVideoPlayList(id)
+        if (!this.state.isSubscribed) {
+            if (!this.state.autoRenovation) {
+                this.setCurrentWindow('subscription')
+                this.stopVideoPlayList()
+                return
+            } else if (this.state.videoPlayList.length > 0) {
+                this.startSubscription(this.state.subscriptionPlan)
+            }
+        }
         if (this.state.isPlayListPlaying) {
-            this.removeFromVideoPlayList(id)
             this.playNextVideo()
         }
     }
@@ -143,13 +172,17 @@ class App extends React.Component {
         this.setCurrentWindow('player')
     }
 
-    startSubscription(time, renovation) {
+    async startSubscription(subscriptionPlan) {
+        let subscription = await requestCreateSubscription(USER_ID, subscriptionPlan)
         this.setState({
             isSubscribed: true,
-            subscriptionTime: time,
-            autoRenovation: renovation,
+            subscriptionTime: subscription[1].time,
+            subscriptionPlan,
         })
-        this.setCurrentWindow(this.state.lastWindow)
+
+        if (this.state.currentWindow === 'subscription') {
+            this.setCurrentWindow('home')
+        }
     }
 
     endSubscription() {
@@ -158,9 +191,29 @@ class App extends React.Component {
         })
     }
 
+    setAutoRenovation(autoRenovation) {
+        this.setState({
+            autoRenovation
+        })
+    }
+
+    setNewSubscriptionPlan(subscriptionPlan) {
+        this.setState({
+            subscriptionPlan
+        })
+    }
+
     setCurrentWindow = currentWindow => {
         if (currentWindow !== 'player') {
             this.removeAllFromVideoPlayList()
+        } else {
+            if (!this.state.isSubscribed) {
+                if (!this.state.autoRenovation) {
+                    currentWindow = 'subscription'
+                } else {
+                    this.startSubscription(this.state.subscriptionPlan)
+                }
+            }
         }
         this.setState({
             lastWindow: this.state.currentWindow,
@@ -200,28 +253,35 @@ class App extends React.Component {
                     />)
                 case 'subscription':
                     return (<Subscription
+                        isSubscribed={this.state.isSubscribed}
+                        subscriptionPlan={this.state.subscriptionPlan}
                         autoRenovation={this.state.autoRenovation}
-                        startSubscription={this.startSubscription} />)
+                        setAutoRenovation={this.setAutoRenovation}
+                        startSubscription={this.startSubscription}
+                        setNewPlan={this.setNewSubscriptionPlan} />)
             }
         }
     }
 
     renderSubscription() {
-        if (!this.state.isSubscribed) {
-            if (this.state.currentWindow !== "subscription") {
-                let text = !this.state.autoRenovation ? "SUSCRÍBETE" : "RENOVACIÓN PENDIENTE"
+        if (!this.state.loading) {
+            if (!this.state.isSubscribed) {
+                if (this.state.currentWindow !== "subscription") {
+                    let text = !this.state.autoRenovation ? "SUSCRÍBETE" : "RENOVACIÓN PENDIENTE"
+                    return (
+                        <button
+                            className="top-bar-subscription-button"
+                            onClick={() => this.setCurrentWindow('subscription')}>{text}</button>
+                    )
+                }
+            } else {
                 return (
-                    <button
-                        className="top-bar-subscription-button"
-                        onClick={() => this.setCurrentWindow('subscription')}>{text}</button>
+                    <SubscriptionTimer
+                        endSubscription={this.endSubscription}
+                        startTime={this.state.subscriptionTime}
+                        onChangeWindow={this.setCurrentWindow} />
                 )
             }
-        } else {
-            return (
-                <SubscriptionCounter
-                    endSubscription={this.endSubscription}
-                    startTime={this.state.subscriptionTime} />
-            )
         }
     }
 

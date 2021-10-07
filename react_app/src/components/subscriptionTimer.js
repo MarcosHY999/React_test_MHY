@@ -1,7 +1,7 @@
 import React from 'react';
-import '../assets/css/subscriptionCounter.css'
+import '../assets/css/subscriptionTimer.css'
 
-class SubscriptionCounter extends React.Component {
+class SubscriptionTimer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,11 +55,12 @@ class SubscriptionCounter extends React.Component {
     }
 
     render() {
-        return <div className="subscription-counter-container">
-            <span className="subscription-counter-text">SUSCRIPCIÓN</span>
-            <span className="subscription-counter-value">{this.getTimerValue()}</span>
+        return <div className="subscription-timer-container"
+            onClick={() => this.props.onChangeWindow('subscription')}>
+            <span className="subscription-timer-text">SUSCRIPCIÓN</span>
+            <span className="subscription-timer-value">{this.getTimerValue()}</span>
         </div>;
     }
 }
 
-export default SubscriptionCounter;
+export default SubscriptionTimer;
