@@ -10,7 +10,7 @@
 }
 
 .lessonb-container:hover {
-    outline: 2px solid white;
+    outline: 2px solid #ff7900;
     cursor: pointer;
 }
 

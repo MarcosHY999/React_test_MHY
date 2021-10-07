@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Lato, Monteserrat;
+  font-family: Lato, Montserrat;
 }
 
 .app {
@@ -14,19 +14,43 @@ html, body {
 }
 
 .top-bar {
-  height: 55px;
+  height: 50px;
   display: flex;
+  padding: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  justify-content: space-between;
   background-color: #000000;
 }
 
 .top-bar-logo {
   height: 60%;
-  padding-left: 1.5rem;
   align-self: center;
 }
 
 .top-bar-logo:hover{
   cursor: pointer;
+}
+
+.top-bar-subscription-button{
+  width: auto;
+  height: 38px;
+  margin-left: auto;
+  align-self: center;
+  background-color: #ff7900;
+  border-color: transparent;
+  border-radius: 2px;
+  font-family: Lato, Montserrat;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.top-bar-subscription-button:hover{
+    background-color: orange;
+    cursor: pointer;
 }
 
 .container{

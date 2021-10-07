@@ -4,6 +4,8 @@ import logoTop from '../assets/images/logo_bc.png'
 import Home from './home'
 import LessonList from './lessonList'
 import Player from './player'
+import Subscription from './subscription';
+import SubscriptionCounter from './subscriptionCounter';
 import { requestUserProfile, requestLessons } from '../requests.js'
 
 class App extends React.Component {
@@ -21,11 +23,16 @@ class App extends React.Component {
             isPlayListPlaying: false,
             playingVideo: undefined,
             videoInstructorName: "N/A",
+            isSubscribed: false,
+            autoRenovation: false,
+            subscriptionTime: 0,
         }
         this.addToVideoPlayList = this.addToVideoPlayList.bind(this)
         this.removeFromVideoPlayList = this.removeFromVideoPlayList.bind(this)
         this.playVideoPlayList = this.playVideoPlayList.bind(this)
         this.setVideoAsCompleted = this.setVideoAsCompleted.bind(this)
+        this.startSubscription = this.startSubscription.bind(this)
+        this.endSubscription = this.endSubscription.bind(this)
     }
 
 
@@ -128,6 +135,39 @@ class App extends React.Component {
         }
     }
 
+    setPlayingVideo = (lesson, videoInstructorName) => {
+        this.setState({
+            playingVideo: lesson,
+            videoInstructorName
+        })
+        this.setCurrentWindow('player')
+    }
+
+    startSubscription(time, renovation) {
+        this.setState({
+            isSubscribed: true,
+            subscriptionTime: time,
+            autoRenovation: renovation,
+        })
+        this.setCurrentWindow(this.state.lastWindow)
+    }
+
+    endSubscription() {
+        this.setState({
+            isSubscribed: false
+        })
+    }
+
+    setCurrentWindow = currentWindow => {
+        if (currentWindow !== 'player') {
+            this.removeAllFromVideoPlayList()
+        }
+        this.setState({
+            lastWindow: this.state.currentWindow,
+            currentWindow
+        })
+    }
+
     renderCurrentWindow() {
         if (!this.state.loading) {
             switch (this.state.currentWindow) {
@@ -158,26 +198,31 @@ class App extends React.Component {
                         onChangeWindow={this.setCurrentWindow}
                         isPlayListPlaying={this.state.isPlayListPlaying}
                     />)
+                case 'subscription':
+                    return (<Subscription
+                        autoRenovation={this.state.autoRenovation}
+                        startSubscription={this.startSubscription} />)
             }
         }
     }
 
-    setCurrentWindow = currentWindow => {
-        if (currentWindow !== 'player') {
-            this.removeAllFromVideoPlayList()
+    renderSubscription() {
+        if (!this.state.isSubscribed) {
+            if (this.state.currentWindow !== "subscription") {
+                let text = !this.state.autoRenovation ? "SUSCRÍBETE" : "RENOVACIÓN PENDIENTE"
+                return (
+                    <button
+                        className="top-bar-subscription-button"
+                        onClick={() => this.setCurrentWindow('subscription')}>{text}</button>
+                )
+            }
+        } else {
+            return (
+                <SubscriptionCounter
+                    endSubscription={this.endSubscription}
+                    startTime={this.state.subscriptionTime} />
+            )
         }
-        this.setState({
-            lastWindow: this.state.currentWindow,
-            currentWindow
-        })
-    }
-
-    setPlayingVideo = (lesson, videoInstructorName) => {
-        this.setState({
-            playingVideo: lesson,
-            videoInstructorName
-        })
-        this.setCurrentWindow('player')
     }
 
     render() {
@@ -187,6 +232,7 @@ class App extends React.Component {
                     <img className="top-bar-logo"
                         src={logoTop}
                         onClick={() => this.setCurrentWindow('home')}></img>
+                    {this.renderSubscription()}
                 </div>
                 <main className="container">
                     {this.renderCurrentWindow()}

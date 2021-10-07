@@ -1,0 +1,85 @@
+.subscription-container{
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    height: 100%;
+}
+
+.subscription-title{
+    align-self: center;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    font-size: 3.5vw;
+    margin-top: 2rem;
+}
+
+.subscription-auto-section{
+    display: flex;
+    margin-top: 5rem;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+}
+
+.subscription-auto-section-checkbox-unseleceted{
+    height: 2vw;
+    width: 2vw;
+    border-radius: 2px;
+    outline: 2px solid #c2c2c2;
+    margin-top: 1px;
+}
+
+.subscription-auto-section-checkbox-unseleceted:hover{
+    outline: 2px solid gray;
+    cursor: pointer;
+}
+
+.subscription-auto-section-checkbox-selected {
+    height: 2vw;
+    width: 2vw;
+    border-radius: 2px;
+    outline: 2px solid #c2c2c2;
+    margin-top: 1px;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 50% 50%;
+    background-color: #ff7900;
+}
+
+.subscription-auto-section-checkbox-selected:hover {
+    outline: 2px solid gray;
+    cursor: pointer;
+}
+.subscription-auto-section-text{
+    color: #c2c2c2;
+    text-align: center;
+    align-self: center;
+    margin-left: 1.5rem;
+    font-size: 2vw;
+}
+
+.subscription-options{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.subscription-options-box{
+    background-color: white;
+    border-radius: 10px;
+    width: 32%;
+    height: 20vw;
+    text-align: center;
+    line-height: 20vw;
+    color: #ff7900;
+    font-weight: bold;
+    font-size: 4vw;
+    margin-top: 3rem;
+}
+
+.subscription-options-box:hover{
+    outline: 3px solid #ff7900;
+    cursor: pointer;
+}

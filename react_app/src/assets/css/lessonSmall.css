@@ -4,7 +4,7 @@
 }
 
 .lesson-container:hover{
-  outline: 1.5px solid white;
+  outline: 2px solid #ff7900;
   cursor: pointer;
 }
 

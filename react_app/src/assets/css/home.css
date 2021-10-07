@@ -109,9 +109,10 @@
     border-radius: 2px;
     border-color: transparent;
     color: white;
-    font-weight: bold;
-    font-size: 12px;
-    width: 100px;
+    font-family: Lato, Montserrat;
+    font-size: 14px;
+    line-height: 27px;
+    width: 120px;
     height: 30px;
   }
 
