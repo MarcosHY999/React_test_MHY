@@ -21,6 +21,13 @@ class App extends React.Component {
             user: undefined,
             lessons: [],
             loading: true,
+
+            //subscription
+            isSubscribed: false,
+            wasSubscribed: false,
+            autoRenovation: false,
+            subscriptionTime: 0,
+            subscriptionPlan: 0,
         }
         this.playListManagerRef = React.createRef()
 
@@ -64,11 +71,6 @@ class App extends React.Component {
         })
     }
 
-    getLastLessons() {
-        let lessons = this.state.lessons;
-        return lessons.slice(lessons.length - 9).reverse()
-    }
-
     async startSubscription(subscriptionPlan) {
         let subscription = await requestCreateSubscription(USER_ID,
             subscriptionPlan, this.state.autoRenovation)
@@ -100,6 +102,11 @@ class App extends React.Component {
         this.setState({
             subscriptionPlan
         })
+    }
+
+    getLastLessons() {
+        let lessons = this.state.lessons;
+        return lessons.slice(lessons.length - 9).reverse()
     }
 
     setCurrentWindow = currentWindow => {
