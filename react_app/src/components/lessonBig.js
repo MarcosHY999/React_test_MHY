@@ -8,14 +8,16 @@ const LEVEL_BALL_ACTIVE = '#b9b9b9';
 class LessonBig extends React.Component {
     state = {
         instructorName: "N/A",
-        isSelected: false,
+        isSelected: this.props.isSelected,
+        loading: true,
     }
 
     async componentDidMount() {
         let instructorName = await
             requestInstructorName(this.props.lesson.instructor_id)
         this.setState({
-            instructorName
+            instructorName,
+            loading: false,
         })
     }
 
@@ -89,31 +91,33 @@ class LessonBig extends React.Component {
 
 
     render() {
-        const { lesson } = this.props;
-
-        return <div className="lessonb-container"
-            onClick={() => this.props.onPlayVideo(lesson, this.state.instructorName)}>
-            <div
-                className="lessonb-top"
-                style={{ backgroundImage: `url(${lesson.image})` }}>
-                {this.renderCheckBox()}
-                <div className="lessonb-top-text">
-                    <span className="lessonb-title">{lesson.name}</span>
-                    <span className="lessonb-instructor">{this.state.instructorName}</span>
-                    {this.renderCompletedTag()}
-                </div>
-            </div>
-            <div className="lessonb-bottom">
-                <div className="lessonb-level">
-                    <span className="lessonb-level-title">Nivel</span>
-                    <div className="lessonb-level-balls">
-                        {this.renderLevelBalls()}
+        if (!this.state.loading) {
+            const { lesson } = this.props;
+            return <div className="lessonb-container"
+                onClick={() => this.props.onPlayVideo(lesson, this.state.instructorName)}>
+                <div
+                    className="lessonb-top"
+                    style={{ backgroundImage: `url(${lesson.image})` }}>
+                    {this.renderCheckBox()}
+                    <div className="lessonb-top-text">
+                        <span className="lessonb-title">{lesson.name}</span>
+                        <span className="lessonb-instructor">{this.state.instructorName}</span>
+                        {this.renderCompletedTag()}
                     </div>
                 </div>
-                <span className="lessonb-date">{this.getDate()}</span>
-                <span className="lessonb-duration">{this.getDuration()}</span>
-            </div>
-        </div>;
+                <div className="lessonb-bottom">
+                    <div className="lessonb-level">
+                        <span className="lessonb-level-title">Nivel</span>
+                        <div className="lessonb-level-balls">
+                            {this.renderLevelBalls()}
+                        </div>
+                    </div>
+                    <span className="lessonb-date">{this.getDate()}</span>
+                    <span className="lessonb-duration">{this.getDuration()}</span>
+                </div>
+            </div>;
+        }
+        return (<React.Fragment />)
     }
 }
 

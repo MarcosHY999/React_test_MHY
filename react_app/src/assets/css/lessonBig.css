@@ -1,7 +1,6 @@
 .lessonb-container {
-  width: 31.5%;
-  max-width: 295px;
-  height: 24%;
+  width: 295px;
+  height: 200px;
   display: flex;
   flex-flow: column;
   background-color: #383838;

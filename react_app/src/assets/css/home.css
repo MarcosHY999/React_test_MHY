@@ -1,6 +1,6 @@
 .home-container {
   display: flex;
-  height: 100%;
+  min-height: 100%;
   flex-flow: column;
   justify-content: space-around;
 }
@@ -75,12 +75,11 @@
 }
 
 .stat-value {
-  text-align: center;
-  width: 90px;
-  height: 90px;
-  line-height: 95px;
+  width: 10vh;
+  height: 10vh;
+  line-height: 10.5vh;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 3.5vh;
   color: #fff;
   text-align: center;
   font-weight: bold;
@@ -96,6 +95,7 @@
 .last-lessons {
   align-self: center;
   width: 90%;
+  min-height: 40%;
 }
 
 .last-lessons-top {

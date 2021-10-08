@@ -9,7 +9,6 @@ class Player extends React.Component {
             timerStart: 5,
             timerLeft: 5,
             lastLessonId: this.props.lesson.id,
-            lastWindow: this.props.lastWindow
         }
         this.timer = undefined;
         this.countDown = this.countDown.bind(this)
@@ -61,7 +60,7 @@ class Player extends React.Component {
     }
 
     returnToLastWindow() {
-        this.props.onChangeWindow(this.state.lastWindow);
+        this.props.onChangeWindow(this.props.lastWindow);
     }
 
     render() {

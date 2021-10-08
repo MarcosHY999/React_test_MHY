@@ -5,14 +5,16 @@ import { requestInstructorName } from '../requests'
 
 class LessonSmall extends React.Component {
     state = {
-        instructorName: "N/A"
+        instructorName: "N/A",
+        loading: true,
     }
 
     async componentDidMount() {
         let instructorName = await
             requestInstructorName(this.props.lessonInfo.instructor_id)
         this.setState({
-            instructorName
+            instructorName,
+            loading: false,
         })
 
     }
@@ -26,21 +28,24 @@ class LessonSmall extends React.Component {
     }
 
     render() {
-        const { lessonInfo } = this.props;
-        return (
-            <div className="lesson-container"
-                onClick={() => this.props.onPlayVideo(lessonInfo, this.state.instructorName)}>
-                <div className="lesson-top">
-                    <img src={logo} className="lesson-logo" />
-                    <span className="lesson-date">{this.getDate()}</span>
-                </div>
-                <div className="lesson-box">
-                    <span className="lesson-name">{lessonInfo.name}</span>
-                    <span className="lesson-instructor">
-                        {this.state.instructorName}
-                    </span>
-                </div>
-            </div>);
+        if (!this.state.loading) {
+            const { lessonInfo } = this.props;
+            return (
+                <div className="lesson-container"
+                    onClick={() => this.props.onPlayVideo(lessonInfo, this.state.instructorName)}>
+                    <div className="lesson-top">
+                        <img src={logo} className="lesson-logo" />
+                        <span className="lesson-date">{this.getDate()}</span>
+                    </div>
+                    <div className="lesson-box">
+                        <span className="lesson-name">{lessonInfo.name}</span>
+                        <span className="lesson-instructor">
+                            {this.state.instructorName}
+                        </span>
+                    </div>
+                </div>);
+        }
+        return <React.Fragment />
     }
 }
 

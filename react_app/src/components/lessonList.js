@@ -7,10 +7,24 @@ class LessonList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedVideos: 0,
+            selectedVideos: this.props.selectedLessons.length,
         }
         this.removeVideo = this.removeVideo.bind(this)
         this.addVideo = this.addVideo.bind(this)
+    }
+
+    addVideo(lesson, instructor) {
+        this.setState({
+            selectedVideos: this.state.selectedVideos + 1
+        })
+        this.props.addVideo(lesson, instructor)
+    }
+
+    removeVideo(id) {
+        this.setState({
+            selectedVideos: this.state.selectedVideos - 1
+        })
+        this.props.removeVideo(id)
     }
 
     renderAllLessons() {
@@ -19,8 +33,10 @@ class LessonList extends React.Component {
             <React.Fragment>
                 {newlessons.reverse().map(lesson => {
                     let completed = this.props.completedLessons.indexOf(lesson.id) !== -1;
+                    let selected = this.props.selectedLessons.indexOf(lesson) !== -1;
                     return (
                         <LessonBig
+                            isSelected={selected}
                             isCompleted={completed}
                             addVideo={this.addVideo}
                             removeVideo={this.removeVideo}
@@ -48,20 +64,6 @@ class LessonList extends React.Component {
                     <span className="lesson-list-button-text">REPRODUCIR AUTOMÁTICAMENTE</span>
                 </div>)
         }
-    }
-
-    addVideo(lesson, instructor) {
-        this.setState({
-            selectedVideos: this.state.selectedVideos + 1
-        })
-        this.props.addVideo(lesson, instructor)
-    }
-
-    removeVideo(id) {
-        this.setState({
-            selectedVideos: this.state.selectedVideos - 1
-        })
-        this.props.removeVideo(id)
     }
 
     render() {
