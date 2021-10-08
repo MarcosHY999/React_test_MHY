@@ -1,120 +1,121 @@
 .lessonb-container {
-    width: 31.5%;
-    max-width: 295px;
-    height: 24%;
-    display: flex;
-    flex-flow: column;
-    background-color: #383838;
-    border-radius: 2px;
-    margin: 8px;
+  width: 31.5%;
+  max-width: 295px;
+  height: 24%;
+  display: flex;
+  flex-flow: column;
+  background-color: #383838;
+  border-radius: 2px;
+  margin: 8px;
 }
 
 .lessonb-container:hover {
-    outline: 2px solid #ff7900;
-    cursor: pointer;
+  outline: 2px solid #ff7900;
+  cursor: pointer;
 }
 
 .lessonb-top {
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-start;
-    background-size: cover;
-    background-position: 50% 50%;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 8px;
-    padding-bottom: 12px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: 50% 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  overflow: hidden;
 }
 
 .lessonb-top-text {
-    display: flex;
-    flex-flow: column;
-    flex-grow: 1;
-    color: white;
-    text-shadow: 1px 1px 1px #000000;
-    margin-left: 10px;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  color: white;
+  text-shadow: 1px 1px 1px #000000;
+  margin-left: 10px;
 }
 
 .lessonb-top-checkbox-unselected {
-    height: 21px;
-    min-width: 21px;
-    border-radius: 2px;
-    outline: 2px solid white;
-    margin-top: 2px;
+  height: 21px;
+  min-width: 21px;
+  border-radius: 2px;
+  outline: 2px solid white;
+  margin-top: 2px;
 }
 
-.lessonb-top-checkbox-unselected:hover{
-    outline: 2px solid gray;
+.lessonb-top-checkbox-unselected:hover {
+  outline: 2px solid gray;
 }
 
 .lessonb-top-checkbox-selected {
-    height: 21px;
-    min-width: 21px;
-    border-radius: 2px;
-    margin-top: 2px;
-    background-repeat: no-repeat;
-    background-size: 70%;
-    background-position: 50% 50%;
-    outline: 2px solid#ff7900;
-    background-color: #ff7900;
+  height: 21px;
+  min-width: 21px;
+  border-radius: 2px;
+  margin-top: 2px;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: 50% 50%;
+  background-color: #ff7900;
+  outline: 2px solid rgb(61, 61, 61);
 }
 
 .lessonb-top-checkbox-selected:hover {
-    outline: 2px solid gray;
+  outline: 2px solid gray;
 }
 
 .lessonb-title {
-    font-weight: bold;
-    font-size: 17px;
-    
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.lessonb-instructor{
-    font-size: 13px;
+.lessonb-instructor {
+  font-size: 13px;
 }
 
-.lessonb-completed{
-    background-color: #ff7900;
-    width: 110px;
-    height: 24px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 12px;
-    margin-top: auto;
-    margin-left: -25px;
-    line-height: 25px;
-    font-size: 15px;
-    box-shadow: 1px 1px 5px 1px black;
+.lessonb-completed {
+  background-color: #ff7900;
+  width: 110px;
+  height: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  margin-top: auto;
+  margin-left: -25px;
+  line-height: 25px;
+  font-size: 15px;
+  box-shadow: 1px 1px 5px 1px black;
 }
 
-.lessonb-bottom{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #b4b3b3;
-    font-size: 12px;
-    border-radius: 2px;
-    box-shadow: 0px -1px 3px -1px #000000;
+.lessonb-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #b4b3b3;
+  font-size: 12px;
+  border-radius: 2px;
+  box-shadow: 0px -1px 3px -1px #000000;
+  overflow: hidden;
 }
 
-.lessonb-level{
-    display: flex;
-    align-items: baseline;
+.lessonb-level {
+  display: flex;
+  align-items: baseline;
 }
 
-.lessonb-level-balls{
-    display: flex;
-    justify-content: space-around;
-    margin-left: 8px;
+.lessonb-level-balls {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 8px;
 }
 
 .lessonb-ball {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    font-size: 30px;
-    background-color: #504f4f;
-    margin-right: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  font-size: 30px;
+  background-color: #504f4f;
+  margin-right: 4px;
 }

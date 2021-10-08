@@ -8,7 +8,7 @@ import Subscription from './subscription';
 import SubscriptionTimer from './subscriptionTimer';
 import {
     requestUserProfile, requestLessons,
-    requestCreateSubscription, requestSubscriptionTime
+    requestCreateSubscription, requestSubscriptionInfo
 } from '../requests.js'
 
 const USER_ID = 1
@@ -33,6 +33,7 @@ class App extends React.Component {
 
             //subscriptions
             isSubscribed: false,
+            wasSubscribed: false,
             autoRenovation: false,
             subscriptionTime: 0,
             subscriptionPlan: 0,
@@ -58,14 +59,24 @@ class App extends React.Component {
     async initializeData() {
         let user = await requestUserProfile()
         let lessons = await requestLessons()
-        let subscription = await requestSubscriptionTime(USER_ID)
-        let subscriptionTime = subscription[0] !== 404 ? subscription[1].time : 0
-        if (subscriptionTime > 0) {
+        let subscription = await requestSubscriptionInfo(USER_ID)
+
+        if (subscription[0] !== 404) {
+            let subscriptionTime = subscription[1].time
+            let subscriptionPlan = subscription[1].subscription
+            let autoRenovation = subscription[1].autoRenovation
             this.setState({
-                isSubscribed: true,
-                subscriptionTime
+                subscriptionPlan,
+                autoRenovation
             })
+            if (subscriptionTime > 0) {
+                this.setState({
+                    subscriptionTime,
+                    isSubscribed: true,
+                })
+            }
         }
+
         this.setState({
             user,
             lessons,
@@ -138,7 +149,8 @@ class App extends React.Component {
         }
         this.removeFromVideoPlayList(id)
         if (!this.state.isSubscribed) {
-            if (!this.state.autoRenovation) {
+            if (!this.state.autoRenovation &&
+                this.state.videoPlayList.length > 0) {
                 this.setCurrentWindow('subscription')
                 this.stopVideoPlayList()
                 return
@@ -173,7 +185,8 @@ class App extends React.Component {
     }
 
     async startSubscription(subscriptionPlan) {
-        let subscription = await requestCreateSubscription(USER_ID, subscriptionPlan)
+        let subscription = await requestCreateSubscription(USER_ID,
+            subscriptionPlan, this.state.autoRenovation)
         this.setState({
             isSubscribed: true,
             subscriptionTime: subscription[1].time,
@@ -187,7 +200,8 @@ class App extends React.Component {
 
     endSubscription() {
         this.setState({
-            isSubscribed: false
+            isSubscribed: false,
+            wasSubscribed: this.state.autoRenovation
         })
     }
 
@@ -254,6 +268,7 @@ class App extends React.Component {
                 case 'subscription':
                     return (<Subscription
                         isSubscribed={this.state.isSubscribed}
+                        wasSubscribed={this.state.wasSubscribed}
                         subscriptionPlan={this.state.subscriptionPlan}
                         autoRenovation={this.state.autoRenovation}
                         setAutoRenovation={this.setAutoRenovation}

@@ -1,29 +1,29 @@
-.lesson-container{
+.lesson-container {
   width: 31%;
   margin-top: 15px;
 }
 
-.lesson-container:hover{
+.lesson-container:hover {
   outline: 2px solid #ff7900;
   cursor: pointer;
 }
 
-.lesson-top{
+.lesson-top {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
 }
 
-.lesson-logo{
+.lesson-logo {
   height: 18px;
 }
 
-.lesson-date{
+.lesson-date {
   color: #6e6e6e;
   font-size: 12px;
 }
 
-.lesson-box{
+.lesson-box {
   display: flex;
   flex-flow: column;
   border-radius: 2px;
@@ -31,17 +31,19 @@
   padding-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  max-height: 45px;
 }
 
-.lesson-name{
+.lesson-name {
   font-weight: bold;
   color: #c2c2c2;
   font-size: 16px;
-  overflow: hidden;
   max-height: 20px;
+  overflow: hidden;
 }
 
-.lesson-instructor{
+.lesson-instructor {
   color: #8d8d8d;
   font-size: 13px;
+  overflow: hidden;
 }

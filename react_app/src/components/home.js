@@ -68,7 +68,7 @@ class Home extends React.Component {
                         src={user.avatar}
                         alt={noUserImage} />
                     <div className="user-info-section">
-                        <div className="user-info-name">{user.name}</div>
+                        <span className="user-info-name">{user.name}</span>
                         <img className="user-info-ubi-marker" src={ubicationMarker}></img>
                     </div>
                 </div>

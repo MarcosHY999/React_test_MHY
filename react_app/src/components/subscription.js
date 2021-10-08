@@ -46,10 +46,10 @@ class Subscription extends React.Component {
     renderOptionBox() {
         const { startSubscription, subscriptionPlan, setNewPlan } = this.props;
 
-        if (this.props.isSubscribed) {
+        if (this.props.isSubscribed || (this.props.wasSubscribed && this.props.autoRenovation)) {
             return (
                 this.state.optionBox.map(option => {
-                    let outlineSize = subscriptionPlan === option.value ? "4px" : "0px"
+                    let outlineSize = subscriptionPlan === option.value ? "6px" : "0px"
                     return (
                         <div className="subscription-options-box"
                             style={{ outline: outlineSize + " solid #ff7900" }}
@@ -70,8 +70,11 @@ class Subscription extends React.Component {
     }
 
     render() {
+        let text = this.props.isSubscribed ||
+            (this.props.wasSubscribed && this.props.autoRenovation) ? "GESTIONAR SUSCRIPCIÓN" : "SUSCRÍBETE"
+
         return <div className="subscription-container">
-            <span className="subscription-title">SUSCRÍBETE</span>
+            <span className="subscription-title">{text}</span>
             <div className="subscription-auto-section">
                 {this.renderCheckBox()}
                 <span className="subscription-auto-section-text">Autorenovar automáticamente</span>

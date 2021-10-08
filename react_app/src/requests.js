@@ -28,10 +28,12 @@ export async function requestInstructorName(id) {
     return contents;
 }
 
-export async function requestCreateSubscription(id, subscription) {
+export async function requestCreateSubscription(id, subscription, autoRenovation) {
     let contents = 0;
     await request({
-        'url': API_URL + 'subscription?id=' + id + "&subscription=" + subscription,
+        'url': API_URL + 'subscription?id=' + id +
+            "&subscription=" + subscription +
+            "&autoRenovation=" + autoRenovation,
         'method': 'post'
     })
         .then(response => contents = [response.status, response.data])
@@ -41,7 +43,7 @@ export async function requestCreateSubscription(id, subscription) {
     return contents;
 }
 
-export async function requestSubscriptionTime(id) {
+export async function requestSubscriptionInfo(id) {
     let contents = 0;
     await request({
         'url': API_URL + 'subscription?id=' + id,

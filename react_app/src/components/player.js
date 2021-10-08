@@ -81,7 +81,7 @@ class Player extends React.Component {
                 </div>
             </div>
             <div className="player-video">
-                <span className="player-video-text">{this.state.timerLeft}</span>
+                <span>{this.state.timerLeft}</span>
             </div>
         </div>;
     }

@@ -1,62 +1,55 @@
-.player-container{
-    display: flex;
-    height: 100%;
-    flex-flow: column;
-    justify-content: space-between;
-    padding: 2.5rem;
+.player-container {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-between;
+  padding: 2.5rem;
 }
 
-.player-top{
-    display: flex;
+.player-top {
+  display: flex;
 }
 
-.player-return-button{
-    background-color: black;
-    border-radius: 50%;
-    border: transparent;
-    height: 60px;
-    width: 60px;
-    align-items: center;
-    justify-content: center;
-    padding-right: 0.5rem;
+.player-return-button {
+  background-color: black;
+  border-radius: 50%;
+  border: transparent;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0.5rem;
 }
 
-.player-return-button:hover{
-    background-color: gray;
-    cursor: pointer;
+.player-return-button:hover {
+  background-color: gray;
+  cursor: pointer;
 }
-.player-return-button-image{
-    height: 30px;
-    width: auto;
-}
-
-.player-top-info{
-    display: flex;
-    flex-flow: column;
-    margin-left: 20px;
+.player-return-button-image {
+  height: 30px;
+  width: auto;
 }
 
-.player-top-title{
-    color:white;
-    font-weight: bolder;
-    font-size: 30px;
+.player-top-info {
+  display: flex;
+  flex-flow: column;
+  margin-left: 20px;
+  color: white;
 }
 
-.player-top-instructor{
-    color: white;
+.player-top-title {
+  font-weight: bolder;
+  font-size: 30px;
 }
 
-.player-video{
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    margin-top: 2rem;
-}
-
-.player-video-text{
-    color: white;
-    font-weight: bolder;
-    font-size: 130px;
+.player-video {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  margin-top: 2rem;
+  color: white;
+  font-weight: bolder;
+  font-size: 130px;
 }
