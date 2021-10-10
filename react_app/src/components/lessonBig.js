@@ -23,7 +23,7 @@ class LessonBig extends React.Component {
             "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
         ];
         let date = new Date(this.props.lesson.published);
-        return date.getDay() + " " + monthNames[date.getMonth()];
+        return date.getDate() + " " + monthNames[date.getMonth()];
     }
 
     getDuration() {
