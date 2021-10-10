@@ -12,10 +12,10 @@ class Timer:
     def set_time(self, time):
         self.time = time
 
+    def count_down(self):
+        Thread(target=self.__start_count_down).start()
+
     def __start_count_down(self):
         while self.time:
             time.sleep(1)
             self.time -= 1
-
-    def count_down(self):
-        Thread(target=self.__start_count_down).start()
