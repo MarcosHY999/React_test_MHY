@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import Player from './player'
 import LessonList from './lessonList'
 
-class PlayListManager extends React.Component {
+class VideoManager extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             instructors: [],
             videoPlayList: [],
@@ -61,14 +61,14 @@ class PlayListManager extends React.Component {
             isPlayListPlaying: true
         })
         this.playNextVideo()
-        this.props.onChangeWindow("player")
+        this.props.changeCurrentWindow("player")
     }
 
     stopVideoPlayList() {
         this.setState({
             isPlayListPlaying: false
         })
-        this.props.onChangeWindow(this.props.lastWindow)
+        this.props.changeCurrentWindow(this.props.lastWindow)
     }
 
     setVideoAsCompleted(id) {
@@ -80,16 +80,18 @@ class PlayListManager extends React.Component {
             })
         }
         this.removeFromVideoPlayList(id)
+
         if (!this.props.isSubscribed) {
             if (!this.props.autoRenovation &&
                 this.state.videoPlayList.length > 0) {
-                this.props.onChangeWindow('subscription')
+                this.props.changeCurrentWindow('subscription')
                 this.stopVideoPlayList()
                 return
             } else if (this.state.videoPlayList.length > 0) {
                 this.props.startSubscription(this.props.subscriptionPlan)
             }
         }
+
         if (this.state.isPlayListPlaying) {
             this.playNextVideo()
         }
@@ -98,6 +100,7 @@ class PlayListManager extends React.Component {
     playNextVideo() {
         let videoPlayList = this.state.videoPlayList.slice()
         let instructors = this.state.instructors.slice()
+
         if (videoPlayList.length > 0) {
             this.setState({
                 playingVideo: videoPlayList[0],
@@ -113,7 +116,7 @@ class PlayListManager extends React.Component {
             playingVideo: lesson,
             videoInstructorName
         })
-        this.props.onChangeWindow('player')
+        this.props.changeCurrentWindow('player')
     }
 
     render() {
@@ -136,11 +139,11 @@ class PlayListManager extends React.Component {
                 setCompleted={this.setVideoAsCompleted}
                 isPlayListPlaying={this.state.isPlayListPlaying}
                 lastWindow={this.props.lastWindow}
-                onChangeWindow={this.props.onChangeWindow}
+                changeCurrentWindow={this.props.changeCurrentWindow}
             />)
         }
-        return <React.Fragment />
+        return null
     }
 }
 
-export default PlayListManager;
+export default VideoManager

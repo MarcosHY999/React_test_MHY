@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import LessonBig from './lessonBig'
 import '../assets/css/lessonList.css'
 import playButton from '../assets/images/play_button.png'
@@ -32,8 +32,8 @@ class LessonList extends React.Component {
         return (
             <React.Fragment>
                 {newlessons.reverse().map(lesson => {
-                    let completed = this.props.completedLessons.indexOf(lesson.id) !== -1;
-                    let selected = this.props.selectedLessons.indexOf(lesson) !== -1;
+                    let completed = this.props.completedLessons.indexOf(lesson.id) !== -1
+                    let selected = this.props.selectedLessons.indexOf(lesson) !== -1
                     return (
                         <LessonBig
                             isSelected={selected}
@@ -73,8 +73,8 @@ class LessonList extends React.Component {
                 <div className="lesson-list-element-list" >
                     {this.renderAllLessons()}
                 </div>
-            </div>);
+            </div>)
     }
 }
 
-export default LessonList;
+export default LessonList

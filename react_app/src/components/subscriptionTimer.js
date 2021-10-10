@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 import '../assets/css/subscriptionTimer.css'
 
 class SubscriptionTimer extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             timerStart: this.props.startTime,
             timerLeft: 0,
         }
-        this.timer = undefined;
+        this.timer = undefined
         this.countDown = this.countDown.bind(this)
     }
 
@@ -25,18 +25,18 @@ class SubscriptionTimer extends React.Component {
             timerLeft: this.state.timerStart
         })
 
-        this.timer = setInterval(this.countDown, 1000);
+        this.timer = setInterval(this.countDown, 1000)
     }
 
     countDown() {
-        let timerLeft = this.state.timerLeft - 1;
+        let timerLeft = this.state.timerLeft - 1
         this.setState({
             timerLeft
         })
 
         if (timerLeft === 0) {
-            clearInterval(this.timer);
-            this.subscriptionEnded();
+            clearInterval(this.timer)
+            this.subscriptionEnded()
         }
     }
 
@@ -47,7 +47,7 @@ class SubscriptionTimer extends React.Component {
     }
 
     toTwoDigits(n) {
-        return n > 9 ? "" + n : "0" + n;
+        return n > 9 ? "" + n : "0" + n
     }
 
     subscriptionEnded() {
@@ -56,11 +56,11 @@ class SubscriptionTimer extends React.Component {
 
     render() {
         return <div className="subscription-timer-container"
-            onClick={() => this.props.onChangeWindow('subscription')}>
+            onClick={() => this.props.changeCurrentWindow('subscription')}>
             <span className="subscription-timer-text">SUSCRIPCIÓN</span>
             <span className="subscription-timer-value">{this.getTimerValue()}</span>
-        </div>;
+        </div>
     }
 }
 
-export default SubscriptionTimer;
+export default SubscriptionTimer

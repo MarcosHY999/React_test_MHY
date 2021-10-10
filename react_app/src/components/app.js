@@ -1,20 +1,20 @@
-import React from 'react';
-import '../assets/css/app.css';
+import React from 'react'
+import '../assets/css/app.css'
 import logoTop from '../assets/images/logo_bc.png'
 import Home from './home'
-import Subscription from './subscription';
-import SubscriptionTimer from './subscriptionTimer';
+import Subscription from './subscription'
+import SubscriptionTimer from './subscriptionTimer'
+import VideoManager from './videoManager'
 import {
     requestUserProfile, requestLessons,
     requestCreateSubscription, requestSubscriptionInfo
 } from '../requests.js'
-import PlayListManager from './playListManager';
 
 const USER_ID = 1
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             currentWindow: 'home',
             lastWindow: 'home',
@@ -29,12 +29,9 @@ class App extends React.Component {
             subscriptionTime: 0,
             subscriptionPlan: 0,
         }
-        this.playListManagerRef = React.createRef()
+        this.videoManagerRef = React.createRef()
 
         this.startSubscription = this.startSubscription.bind(this)
-        this.endSubscription = this.endSubscription.bind(this)
-        this.setAutoRenovation = this.setAutoRenovation.bind(this)
-        this.setSubscriptionPlan = this.setSubscriptionPlan.bind(this)
     }
 
     async componentDidMount() {
@@ -51,7 +48,7 @@ class App extends React.Component {
 
         if (subscription[0] !== 404) {
             let subscriptionTime = subscription[1].time
-            let subscriptionPlan = subscription[1].subscription
+            let subscriptionPlan = subscription[1].plan
             let autoRenovation = subscription[1].autoRenovation
             this.setState({
                 subscriptionPlan,
@@ -74,6 +71,7 @@ class App extends React.Component {
     async startSubscription(subscriptionPlan) {
         let subscription = await requestCreateSubscription(USER_ID,
             subscriptionPlan, this.state.autoRenovation)
+
         this.setState({
             isSubscribed: true,
             subscriptionTime: subscription[1].time,
@@ -85,44 +83,45 @@ class App extends React.Component {
         }
     }
 
-    endSubscription() {
+    endSubscription = () => {
         this.setState({
             isSubscribed: false,
             wasSubscribed: this.state.autoRenovation
         })
     }
 
-    setAutoRenovation(autoRenovation) {
+    setAutoRenovation = autoRenovation => {
         this.setState({
             autoRenovation
         })
     }
 
-    setSubscriptionPlan(subscriptionPlan) {
+    setSubscriptionPlan = subscriptionPlan => {
         this.setState({
             subscriptionPlan
         })
     }
 
     getLastLessons() {
-        let lessons = this.state.lessons;
+        let lessons = this.state.lessons
         return lessons.slice(lessons.length - 9).reverse()
     }
 
     setCurrentWindow = currentWindow => {
         if (currentWindow === "home") {
-            this.playListManagerRef.current.removeAllFromVideoPlayList()
-        } else {
+            this.videoManagerRef.current.removeAllFromVideoPlayList()
+        }
+
+        if (currentWindow === "player") {
             if (!this.state.isSubscribed) {
-                if (currentWindow !== "lessonList") {
-                    if (!this.state.autoRenovation) {
-                        currentWindow = 'subscription'
-                    } else {
-                        this.startSubscription(this.state.subscriptionPlan)
-                    }
+                if (this.state.autoRenovation) {
+                    this.startSubscription(this.state.subscriptionPlan)
+                } else {
+                    currentWindow = 'subscription'
                 }
             }
         }
+
         if (this.state.currentWindow !== currentWindow) {
             this.setState({
                 lastWindow: this.state.currentWindow,
@@ -135,10 +134,9 @@ class App extends React.Component {
         if (!this.state.loading) {
             switch (this.state.currentWindow) {
                 case 'home':
-                default:
                     return (<Home
-                        onChangeWindow={this.setCurrentWindow}
-                        onPlayVideo={this.playListManagerRef.current.setPlayingVideo}
+                        changeCurrentWindow={this.setCurrentWindow}
+                        onPlayVideo={this.videoManagerRef.current.setPlayingVideo}
                         user={this.state.user}
                         lessons={this.getLastLessons()} />)
 
@@ -152,15 +150,14 @@ class App extends React.Component {
                         startSubscription={this.startSubscription}
                         setNewPlan={this.setSubscriptionPlan} />)
 
-                case 'lessonList':
-                case 'player':
+                default:
                     break
 
             }
         }
     }
 
-    renderSubscription() {
+    renderSubscriptionTopSection() {
         if (!this.state.loading) {
             if (!this.state.isSubscribed) {
                 if (this.state.currentWindow !== "subscription") {
@@ -176,7 +173,7 @@ class App extends React.Component {
                     <SubscriptionTimer
                         endSubscription={this.endSubscription}
                         startTime={this.state.subscriptionTime}
-                        onChangeWindow={this.setCurrentWindow} />
+                        changeCurrentWindow={this.setCurrentWindow} />
                 )
             }
         }
@@ -189,23 +186,23 @@ class App extends React.Component {
                     <img className="top-bar-logo"
                         src={logoTop}
                         onClick={() => this.setCurrentWindow('home')}></img>
-                    {this.renderSubscription()}
+                    {this.renderSubscriptionTopSection()}
                 </div>
                 <main className="container">
-                    <PlayListManager
+                    <VideoManager
                         isSubscribed={this.state.isSubscribed}
                         autoRenovation={this.state.autoRenovation}
                         subscriptionPlan={this.state.subscriptionPlan}
                         startSubscription={this.startSubscription}
-                        ref={this.playListManagerRef}
+                        ref={this.videoManagerRef}
                         lessons={this.state.lessons}
                         lastWindow={this.state.lastWindow}
                         currentWindow={this.state.currentWindow}
-                        onChangeWindow={this.setCurrentWindow} />
+                        changeCurrentWindow={this.setCurrentWindow} />
                     {this.renderCurrentWindow()}
                 </main>
             </div>
-        );
+        )
     }
 }
-export default App;
+export default App

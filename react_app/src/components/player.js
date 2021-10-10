@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 import '../assets/css/player.css'
 import returnArrow from '../assets/images/return_button_arrow.png'
 
 class Player extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             timerStart: 5,
             timerLeft: 5,
             lastLessonId: this.props.lesson.id,
         }
-        this.timer = undefined;
+        this.timer = undefined
         this.countDown = this.countDown.bind(this)
     }
 
@@ -24,7 +24,7 @@ class Player extends React.Component {
             this.setState({
                 lastLessonId: lessonId
             })
-            this.startTimer();
+            this.startTimer()
         }
     }
 
@@ -37,17 +37,17 @@ class Player extends React.Component {
             timerLeft: this.state.timerStart
         })
 
-        this.timer = setInterval(this.countDown, 1000);
+        this.timer = setInterval(this.countDown, 1000)
     }
 
     countDown() {
-        let timerLeft = this.state.timerLeft - 1;
+        let timerLeft = this.state.timerLeft - 1
         this.setState({
             timerLeft
         })
 
         if (timerLeft === 0) {
-            clearInterval(this.timer);
+            clearInterval(this.timer)
             this.completeAndReturn()
         }
     }
@@ -55,16 +55,16 @@ class Player extends React.Component {
     completeAndReturn() {
         this.props.setCompleted(this.props.lesson.id)
         if (!this.props.isPlayListPlaying) {
-            this.returnToLastWindow();
+            this.returnToLastWindow()
         }
     }
 
     returnToLastWindow() {
-        this.props.onChangeWindow(this.props.lastWindow);
+        this.props.changeCurrentWindow(this.props.lastWindow)
     }
 
     render() {
-        const { lesson } = this.props;
+        const { lesson } = this.props
         return <div className="player-container">
             <div className="player-top">
                 <button
@@ -82,8 +82,8 @@ class Player extends React.Component {
             <div className="player-video">
                 <span>{this.state.timerLeft}</span>
             </div>
-        </div>;
+        </div>
     }
 }
 
-export default Player;
+export default Player

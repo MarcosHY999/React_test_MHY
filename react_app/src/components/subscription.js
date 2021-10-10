@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import '../assets/css/subscription.css'
 import check from '../assets/images/check.png'
 
@@ -27,24 +27,19 @@ class Subscription extends React.Component {
     renderCheckBox() {
         if (!this.state.isSelected)
             return (
-                <React.Fragment>
-                    <span className="subscription-auto-section-checkbox-unseleceted"
-                        onClick={() => this.toogleSelection()} />
-                </React.Fragment>
-            )
+                <span className="subscription-auto-section-checkbox-unseleceted"
+                    onClick={() => this.toogleSelection()} />)
         else {
             return (
-                <React.Fragment>
-                    <span className="subscription-auto-section-checkbox-selected"
-                        style={{ backgroundImage: `url(${check})` }}
-                        onClick={() => this.toogleSelection()}
-                    />
-                </React.Fragment>)
+                <span className="subscription-auto-section-checkbox-selected"
+                    style={{ backgroundImage: `url(${check})` }}
+                    onClick={() => this.toogleSelection()}
+                />)
         }
     }
 
     renderOptionBox() {
-        const { startSubscription, subscriptionPlan, setNewPlan } = this.props;
+        const { startSubscription, subscriptionPlan, setNewPlan } = this.props
 
         if (this.props.isSubscribed || (this.props.wasSubscribed && this.props.autoRenovation)) {
             return (
@@ -82,8 +77,8 @@ class Subscription extends React.Component {
             <div className="subscription-options">
                 {this.renderOptionBox()}
             </div>
-        </div>;
+        </div>
     }
 }
 
-export default Subscription;
+export default Subscription

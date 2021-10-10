@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import ubicationMarker from '../assets/images/ubication_marker.png'
 import '../assets/css/home.css'
-import LessonSmall from './lessonSmall';
+import LessonSmall from './lessonSmall'
 import noUserImage from '../assets/images/no_user_img.png'
 
 class Home extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         const { user } = this.props
         this.state = {
             userInfo: [
@@ -83,7 +83,7 @@ class Home extends React.Component {
                         <span className="last-lessons-title">ÚLTIMAS CLASES</span>
                         <button
                             className="last-lessons-button"
-                            onClick={() => this.props.onChangeWindow('lessonList')}
+                            onClick={() => this.props.changeCurrentWindow('lessonList')}
                         >VER TODAS</button>
                     </div>
                     <ul className="last-lessons-list">
@@ -91,8 +91,8 @@ class Home extends React.Component {
                     </ul>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default Home;
+export default Home

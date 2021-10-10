@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import logo from '../assets/images/logo_bc_2.png'
 import '../assets/css/lessonSmall.css'
 import { requestInstructorName } from '../requests'
@@ -16,20 +16,19 @@ class LessonSmall extends React.Component {
             instructorName,
             loading: false,
         })
-
     }
 
     getDate() {
         const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
             "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
-        ];
-        let date = new Date(this.props.lessonInfo.published);
-        return date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear();
+        ]
+        let date = new Date(this.props.lessonInfo.published)
+        return date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getFullYear()
     }
 
     render() {
         if (!this.state.loading) {
-            const { lessonInfo } = this.props;
+            const { lessonInfo } = this.props
             return (
                 <div className="lesson-container"
                     onClick={() => this.props.onPlayVideo(lessonInfo, this.state.instructorName)}>
@@ -43,10 +42,10 @@ class LessonSmall extends React.Component {
                             {this.state.instructorName}
                         </span>
                     </div>
-                </div>);
+                </div>)
         }
-        return <React.Fragment />
+        return null
     }
 }
 
-export default LessonSmall;
+export default LessonSmall
