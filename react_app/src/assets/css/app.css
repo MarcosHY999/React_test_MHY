@@ -1,0 +1,67 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Lato, Montserrat;
+}
+
+.app {
+  background-color: #151515;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  height: 45px;
+  display: flex;
+  padding: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  justify-content: space-between;
+  background-color: #000000;
+}
+
+.top-bar-logo {
+  height: 60%;
+  align-self: center;
+}
+
+.top-bar-logo:hover {
+  cursor: pointer;
+}
+
+.top-bar-subscription-button {
+  width: auto;
+  height: 36px;
+  margin-left: auto;
+  align-self: center;
+  background-color: #ff7900;
+  border-color: transparent;
+  border-radius: 2px;
+  font-family: Lato, Montserrat;
+  color: white;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.4px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: hidden;
+}
+
+.top-bar-subscription-button:hover {
+  background-color: #d96700;
+  cursor: pointer;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

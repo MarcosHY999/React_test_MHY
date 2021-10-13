@@ -1,0 +1,49 @@
+.lesson-container {
+  width: 31%;
+  margin-top: 15px;
+}
+
+.lesson-container:hover {
+  outline: 2px solid #ff7900;
+  cursor: pointer;
+}
+
+.lesson-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.lesson-logo {
+  height: 18px;
+}
+
+.lesson-date {
+  color: #6e6e6e;
+  font-size: 12px;
+}
+
+.lesson-box {
+  display: flex;
+  flex-flow: column;
+  border-radius: 2px;
+  background-color: #2f2f2f;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-height: 45px;
+}
+
+.lesson-name {
+  font-weight: bold;
+  color: #c2c2c2;
+  font-size: 16px;
+  max-height: 20px;
+  overflow: hidden;
+}
+
+.lesson-instructor {
+  color: #8d8d8d;
+  font-size: 13px;
+  overflow: hidden;
+}
